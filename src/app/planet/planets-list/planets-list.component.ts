@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
   selector: 'app-planets-list',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlanetsListComponent implements OnInit {
 
-  constructor() { }
+  planets: any = null;
+
+  constructor( private navigationService: NavigationService) { }
 
   ngOnInit(): void {
+
+    this.navigationService.getPlanets().subscribe((res) => {
+      this.planets = res;
+    })
   }
 
+  goToDetail(url: string){
+    return url.replace(/\/$/, '').split('/').pop();
+  }
 }
+
+

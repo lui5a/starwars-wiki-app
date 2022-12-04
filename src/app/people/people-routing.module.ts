@@ -14,7 +14,7 @@ const routes: Routes = [
            path: '', component: PeopleViewComponent,
            children: [
             { path: 'people-list', component: PeopleListComponent },
-            { path: 'person-details', component: PersonDetailsComponent },
+            { path: 'person-details/:id', component: PersonDetailsComponent },
             {
               path: '',
               redirectTo: 'people-list',

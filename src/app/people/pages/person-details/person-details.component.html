@@ -3,17 +3,18 @@
   <div class="d-flex flex-row justify-content-center">
 
 
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 18rem;"  *ngIf="personDetails">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
+        <h5 class="card-title">{{personDetails.name}}</h5>
         <ul class="list-group">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Morbi leo risus</li>
-          <li class="list-group-item">Porta ac consectetur ac</li>
-          <li class="list-group-item">Vestibulum at eros</li>
+          <li class="list-group-item">Birth year: {{personDetails.birth_year}}</li>
+          <li class="list-group-item">Eye color: {{personDetails.eye_color}}</li>
+          <li class="list-group-item">Gender: {{personDetails.gender}}</li>
+          <li class="list-group-item">Hair color: {{personDetails.hair_color}}</li>
+          <li class="list-group-item">Height: {{personDetails.height}}</li>
+          <li class="list-group-item">Planet: {{personDetails.planet.name}}</li>
+          <li class="list-group-item">Mass: {{personDetails.mass}}</li>
+          <li class="list-group-item">Skin color: {{personDetails.skin_color}}</li>
         </ul>
       </div>
     </div>
@@ -22,7 +23,7 @@
 
   <div class="d-flex- flex-row text-end">
 
-    <a href="#" class="btn btn-primary ">Go back</a>
+    <a href="#" class="btn btn-primary " routerLink="/people-list">Go back</a>
   </div>
 
 </div>
