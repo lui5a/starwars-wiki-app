@@ -13,7 +13,7 @@ const routes: Routes = [{
          path: '', component: PlanetViewComponent,
          children: [
           { path: 'planets-list', component: PlanetsListComponent },
-          { path: 'planet-details', component: PlanetDetailsComponent },
+          { path: 'planet-details/:id', component: PlanetDetailsComponent },
           {
             path: '',
             redirectTo: 'planets-list',

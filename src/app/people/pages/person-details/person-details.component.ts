@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
   selector: 'app-person-details',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonDetailsComponent implements OnInit {
 
-  constructor() { }
+  personId: any;
+  personDetails: any;
 
-  ngOnInit(): void {
+  constructor(protected activated: ActivatedRoute, private navigationService: NavigationService) {
+    this.activated.paramMap.subscribe(paramMap => {
+      if (paramMap.has('id')) {
+          this.personId =  paramMap.get('id')
+      }
+    });
   }
 
+  ngOnInit(): void {
+
+  this.navigationService.getPersonDetail(this.personId).subscribe((res)=> {
+    this.personDetails = res;
+  })
+
+
+  }
 }
