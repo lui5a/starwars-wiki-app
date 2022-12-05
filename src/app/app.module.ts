@@ -12,7 +12,7 @@ import { PlanetModule } from './planet/planet.module';
 @NgModule({
   declarations: [
     AppComponent
-  ],
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

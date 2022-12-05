@@ -1,11 +1,12 @@
 <div class="container-fluid text-center">
   <div class="d-flex flex-row justify-content-center" *ngFor="let planet of planets" >
-    <ul class="list-group" routerLink="/planet-details/{{goToDetail(planet.url)}}" >
+    <ul class="list-group"  >
       <li class="list-group-item border-0" >
         <div class="d-flex flex-column">
           <h4 class="px-3 border-bottom">Planet: {{planet.name}}</h4>
           <p class="px-3">Population: {{planet.population}}</p>
           <p class="px-3">Surface water:{{planet.surface_water}}</p>
+          <p class="px-3 text-primary" routerLink="/planet-details/{{goToDetail(planet.url)}}">More details...</p>
         </div>
       </li>
     </ul>
