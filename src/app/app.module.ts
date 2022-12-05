@@ -8,6 +8,11 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { PeopleModule } from './people/people.module';
 import { PlanetModule } from './planet/planet.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsFormPluginModule } from '@ngxs/form-plugin';
+import { SearchManagerState } from './search-manager/search-manager.state';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +24,11 @@ import { PlanetModule } from './planet/planet.module';
     SharedModule,
     PeopleModule,
     PlanetModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxsModule.forRoot([SearchManagerState]),
+    NgxsFormPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
