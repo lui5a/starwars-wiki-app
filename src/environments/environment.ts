@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://swapi.py4e.com/api"
+  apiUrl: "https://swapi.dev/api/"
 };
 
 /*
