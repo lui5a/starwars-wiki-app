@@ -4,9 +4,9 @@
       <li class="list-group-item border-0">
         <div class="d-flex flex-column">
           <h4 class="px-3 border-bottom">{{person.name}}</h4>
-          <p class="px-3">{{transformHeight(person.height)}}</p>
-          <p class="px-3">{{person.planet.name}}</p>
-          <p class="px-3 text-primary" routerLink="/person-details/{{goToDetail(person.url)}}">Ver más</p>
+          <p class="px-3"> Height: {{transformHeight(person.height)}}</p>
+          <p class="px-3">Homeworld: {{person.planet.name}}</p>
+          <p class="px-3 text-primary" routerLink="/person-details/{{goToDetail(person.url)}}">More details...</p>
         </div>
       </li>
     </ul>
