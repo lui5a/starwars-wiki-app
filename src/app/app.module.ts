@@ -13,7 +13,7 @@ import { PeopleModule } from './people/people.module';
 import { PlanetModule } from './planet/planet.module';
 import { FormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
-import { SearchesState } from './store/search.state';
+import { ApiManagerState } from './store/api-manager.state';
 
 
 
@@ -30,7 +30,7 @@ import { SearchesState } from './store/search.state';
     HttpClientModule,
     FormsModule,
     NgxsModule.forRoot([
-      SearchesState
+      ApiManagerState
     ],
       { developmentMode: !environment.production }
     ),

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { forkJoin, map, switchMap } from 'rxjs';
-import { Person } from 'src/app/models/person';
 import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
