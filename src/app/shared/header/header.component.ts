@@ -19,10 +19,11 @@ export class HeaderComponent implements OnInit {
     private store: Store,
     protected activatedRoute: Router
   ) {
-    this.searches = this.store.select(state => state.searches.searches);
+    this.searches = this.store.select(state => state.apimanager.searches);
   }
 
   ngOnInit(): void {
+    console.log(this.activatedRoute.url.split('/')[1])
   }
 
   public addSearch() {
