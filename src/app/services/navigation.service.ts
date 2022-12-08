@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { plainToInstance } from 'class-transformer';
 import { environment } from 'src/environments/environment';
-import { map, mergeMap, Observable, of, switchMap } from 'rxjs';
+import { map, Observable, tap} from 'rxjs';
 import { Person } from '../models/person';
 import { Planet } from '../models/planet';
 
@@ -24,10 +24,9 @@ export class NavigationService {
       map((data: any) => {
         let peopleList = plainToInstance(Person, data.results as Array<Person>);
         peopleList.forEach((person: Person) => {
-          this.getPersonPlanet(person.homeworld).subscribe(res => person.planet = res)
-
+          this.getPersonPlanet(person.homeworld).pipe(tap((res) => {person.planet = res}))
         });
-        return peopleList;
+        return peopleList as Array<Person>;
       })
     );
 
@@ -65,19 +64,6 @@ export class NavigationService {
       })
     );
   }
-
-
-  // return this.httpClient.get(url).pipe(
-  //   map((data: any) => {
-  //     let peopleList = plainToInstance(Person, data.results as Array<Person>);
-  //     peopleList.forEach((person: Person) => {
-  //       this.getPersonPlanet(person.homeworld).subscribe(res => person.planet = res)
-
-  //     });
-  //     return peopleList;
-  //   })
-  // );
-
 
   getPersonPlanet(planetUrl: string){
 
