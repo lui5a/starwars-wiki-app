@@ -1,9 +1,9 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="planetDetails">
 
   <div class="d-flex flex-row justify-content-center">
 
 
-    <div class="card" style="width: 18rem;" *ngIf="planetDetails">
+    <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">{{planetDetails.name}}</h5>
         <ul class="list-group">
