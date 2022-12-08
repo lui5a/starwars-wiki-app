@@ -1,25 +1,5 @@
-form {
-  display:flex;
-  flex-direction:row;
-  border:1px solid grey;
-  background-color: #fff;
-  height: 2rem;
-  padding:2px;
-}
-
-input {
-  /* Tell the input to use all the available space */
-  // flex-grow:2;
-  /* And hide the input's outline, so the form looks like the outline */
-  border:none;
-}
-
-input:focus {
-  /* removing the input focus blue box. Put this on the form if you like. */
-  outline: none;
-}
-
-button {
-  /* Just a little styling to make it pretty */
-
+span{
+  position: absolute;
+  top: 40px;
+  right: 40px;
 }

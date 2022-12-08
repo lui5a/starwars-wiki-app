@@ -16,17 +16,17 @@ export class SearchesState {
   add({ getState, patchState }: StateContext<SearchStateModel>, { payload }: AddSearch) {
     const state = getState();
 
-    const allSearches = [  ...state.searches, payload]
+    const allSearches = [...state.searches, payload]
     let resultsToShow: Searches[] = [];
 
-    if(allSearches.length > 3 ){
+    if (allSearches.length > 3) {
       resultsToShow = allSearches.slice(Math.max(allSearches.length - 3, 1))
       patchState({
-        searches: [  ...resultsToShow]
+        searches: [...resultsToShow]
       });
-    } else{
+    } else {
       patchState({
-        searches: [  ...allSearches]
+        searches: [...allSearches]
       });
     }
   }

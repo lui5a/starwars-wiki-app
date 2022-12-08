@@ -1,11 +1,11 @@
-<div class="topnav">
+<div class="topnav p-4">
   <div *ngFor="let search of searches | async">
     <a>{{search.text}}</a>
   </div>
   <div class="search-container">
     <form>
       <input [(ngModel)]="text" type="text" placeholder="Search.." name="search">
-      <button (click)="addSearch()" class="border-0"><i class="fa fa-search"></i></button>
+      <span (click)="addSearch()" class="border-0"><i class="fa fa-search"></i></span>
     </form>
   </div>
 </div>
