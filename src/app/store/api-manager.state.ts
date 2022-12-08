@@ -5,6 +5,8 @@ import { SearchService } from '../services/search.service';
 import { Injectable } from '@angular/core';
 import { NavigationService } from '../services/navigation.service';
 import { tap } from 'rxjs';
+import { Planet } from '../models/planet';
+import { Person } from '../models/person';
 
 
 @State({
@@ -22,10 +24,17 @@ export class ApiManagerState {
     private searchService: SearchService,
     private navigationService: NavigationService
   ) { }
+
+
+
   @Selector()
   static getSearches(state: ApiManagerStateModel) { return state.searches; }
-  static getPeople(state: ApiManagerStateModel) { return state.peopleList; }
-  static getPlanets(state: ApiManagerStateModel) { return state.planetList; }
+
+  @Selector()
+  static getPeople(state: ApiManagerStateModel): Person[] { return state.peopleList; }
+
+  @Selector()
+  static getPlanets(state: ApiManagerStateModel): Planet[] { return state.planetList; }
 
 
   @Action(GetPeople)
@@ -53,8 +62,8 @@ export class ApiManagerState {
     const allSearches = [...state.searches, payload]
     let resultsToShow: Searches[] = [];
 
-    if (allSearches.length > 3) {
-      resultsToShow = allSearches.slice(Math.max(allSearches.length - 3, 1))
+    if (allSearches.length > 4) {
+      resultsToShow = allSearches.slice(Math.max(allSearches.length - 4, 1))
       patchState({
         searches: [...resultsToShow]
       });

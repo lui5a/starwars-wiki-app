@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Person } from 'src/app/models/person';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { GetPeople } from 'src/app/store/api-manager.actions';
+import { ApiManagerState } from 'src/app/store/api-manager.state';
 
 @Component({
   selector: 'app-people-list',
@@ -11,22 +12,14 @@ import { GetPeople } from 'src/app/store/api-manager.actions';
   styleUrls: ['./people-list.component.scss']
 })
 export class PeopleListComponent implements OnInit {
-  people: any = null;
 
-  public peopleSearch: Observable<Person[]>;
+  @Select(ApiManagerState.getPeople) peopleList$: Observable<Person[]>;
 
-  constructor(
-    private navigationService: NavigationService,
-    private store: Store
-    ) {
-    this.peopleSearch = this.store.select(state => state.apimanager.getPeople);
-  }
+
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
     this.store.dispatch(new GetPeople())
-    this.navigationService.getPeople().subscribe((person) => {
-      this.people = person;
-    })
   }
 
 

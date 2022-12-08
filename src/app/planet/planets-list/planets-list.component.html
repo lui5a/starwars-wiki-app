@@ -1,5 +1,5 @@
 <div class="container-fluid text-center">
-  <div class="d-flex flex-row justify-content-center" *ngFor="let planet of planets" >
+  <div class="d-flex flex-row justify-content-center" *ngFor="let planet of planetList$ | async" >
     <ul class="list-group"  >
       <li class="list-group-item border-0" >
         <div class="d-flex flex-column">
