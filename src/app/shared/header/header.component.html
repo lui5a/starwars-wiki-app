@@ -1,6 +1,6 @@
 <div class="topnav p-4">
-  <div *ngFor="let search of searches | async">
-    <a>{{search.text}}</a>
+  <div *ngFor="let search of searches | async; index as i">
+    <a>{{i+1}}. Searched: {{search.text}}</a>
   </div>
   <div class="search-container">
     <form>
