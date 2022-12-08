@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { Person } from 'src/app/models/person';
 import { NavigationService } from 'src/app/services/navigation.service';
+import { GetPeople } from 'src/app/store/api-manager.actions';
 
 @Component({
   selector: 'app-people-list',
@@ -9,9 +13,17 @@ import { NavigationService } from 'src/app/services/navigation.service';
 export class PeopleListComponent implements OnInit {
   people: any = null;
 
-  constructor(private navigationService: NavigationService) { }
+  public peopleSearch: Observable<Person[]>;
+
+  constructor(
+    private navigationService: NavigationService,
+    private store: Store
+    ) {
+    this.peopleSearch = this.store.select(state => state.apimanager.getPeople);
+  }
 
   ngOnInit(): void {
+    this.store.dispatch(new GetPeople())
     this.navigationService.getPeople().subscribe((person) => {
       this.people = person;
     })

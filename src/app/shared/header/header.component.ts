@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.activatedRoute.url.split('/')[1])
   }
 
   public addSearch() {

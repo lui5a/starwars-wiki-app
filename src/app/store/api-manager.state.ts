@@ -27,6 +27,25 @@ export class ApiManagerState {
   static getPeople(state: ApiManagerStateModel) { return state.peopleList; }
   static getPlanets(state: ApiManagerStateModel) { return state.planetList; }
 
+
+  @Action(GetPeople)
+  GetPeople({ patchState }: StateContext<ApiManagerStateModel>, { }: GetPeople) {
+    return this.navigationService.getPeople().pipe(tap((res) => {
+      patchState({
+        peopleList: res
+      })
+    }));
+  }
+
+  @Action(GetPlanets)
+  GetPlanets({ patchState }: StateContext<ApiManagerStateModel>, {  }: GetPlanets) {
+    return this.navigationService.getPlanets().pipe(tap((res) => {
+      patchState({
+        planetList: res
+      })
+    }));
+  }
+
   @Action(AddSearch)
   add({ getState, patchState }: StateContext<ApiManagerStateModel>, { payload }: AddSearch) {
     const state = getState();
