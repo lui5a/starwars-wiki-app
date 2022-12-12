@@ -8,4 +8,5 @@ export class ApiManagerStateModel {
 }
 export interface Searches {
   text: string;
+  type: string;
 }

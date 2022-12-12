@@ -25,3 +25,8 @@ export class FilterPlanets {
   constructor( public payload: string ) {}
 }
 
+export class RepeatSearch {
+  static readonly type = '[REPEATSEARCH] RepeatSearch';
+  constructor( public payload: Searches ) {}
+}
+

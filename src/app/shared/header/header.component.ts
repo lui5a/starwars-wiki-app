@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { AddSearch, FilterPeople, FilterPlanets } from 'src/app/store/api-manager.actions';
+import { AddSearch, FilterPeople, FilterPlanets, RepeatSearch } from 'src/app/store/api-manager.actions';
 import { Searches } from 'src/app/store/api-manager.model';
 
 @Component({
@@ -26,11 +26,15 @@ export class HeaderComponent implements OnInit {
   }
 
   public addSearch() {
-    this.store.dispatch(new AddSearch({ text: this.text }));
-    this.activatedRoute.url.split('/')[1] === 'people' ? this.store.dispatch(new FilterPeople(this.text)) : this.store.dispatch(new FilterPlanets(this.text))
+    const type = this.activatedRoute.url.split('/')[1]
+    this.store.dispatch(new AddSearch({ text: this.text, type: type }));
+    type === 'people' ? this.store.dispatch(new FilterPeople(this.text)) : this.store.dispatch(new FilterPlanets(this.text))
     this.text = '';
   }
 
+  goToPreviousSearch(search: Searches){
+    this.store.dispatch(new RepeatSearch(search));
+  }
 
 
 }
