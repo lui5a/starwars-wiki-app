@@ -1,5 +1,6 @@
 import { Searches } from './api-manager.model';
 
+
 export class GetPeople {
   static readonly type = '[GETPEOPLE] GetPeople';
   constructor( ) {}

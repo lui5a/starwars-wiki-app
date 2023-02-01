@@ -1,6 +1,8 @@
 import { Planet } from "./planet";
-
-export class Person {
+interface PersonInterface{
+  hello: () => string;
+}
+export class Person implements PersonInterface {
     birth_year: string;
     eye_color: string;
     films: string[];
@@ -18,4 +20,9 @@ export class Person {
     starships: string[];
     url: string;
     vehicles: string[];
+    //serialización de json a objeto
+    hello(){
+      return 'hello ' + this.name;
+    }
 }
+

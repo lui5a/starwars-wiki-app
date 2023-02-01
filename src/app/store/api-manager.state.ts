@@ -39,11 +39,11 @@ export class ApiManagerState {
 
   @Action(GetPeople)
   GetPeople({ patchState }: StateContext<ApiManagerStateModel>, { }: GetPeople) {
-    return this.navigationService.getPeople().pipe(tap((res) => {
+    return this.navigationService.getPeople().subscribe((res) => {
       patchState({
         peopleList: res
       })
-    }));
+    });
   }
 
   @Action(GetPlanets)

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { plainToInstance } from 'class-transformer';
 import { environment } from 'src/environments/environment';
-import { map, Observable, tap} from 'rxjs';
+import { forkJoin, map, mergeMap, Observable, tap} from 'rxjs';
 import { Person } from '../models/person';
 import { Planet } from '../models/planet';
 
@@ -17,24 +17,65 @@ export class NavigationService {
     private httpClient: HttpClient
   ) { }
 
+  // getPeople(): Observable<any>{
+  //   const url = `${this.baseUrl}people`;
+
+  //   return this.httpClient.get(url).pipe(
+  //     map((data: any) => {
+  //       let peopleList = plainToInstance(Person, data.results as Array<Person>);
+  //       peopleList.map((person: Person) => {
+  //         this.getPersonPlanet(person.homeworld).subscribe((res) => {
+  //           console.log(res)
+  //           person.planet = res
+  //           return person as Person;
+  //         })
+  //         return peopleList
+  //       });
+  //     })
+  //   );
+
+  // }
+
+
   getPeople(): Observable<any>{
-    const url = `${this.baseUrl}/people`;
+    const url = `${this.baseUrl}people`;
 
     return this.httpClient.get(url).pipe(
-      map((data: any) => {
+      mergeMap((data: any) => {
+        console.log(data.results)
         let peopleList = plainToInstance(Person, data.results as Array<Person>);
-        peopleList.forEach((person: Person) => {
-          this.getPersonPlanet(person.homeworld).pipe(tap((res) => {person.planet = res}))
-        });
-        return peopleList as Array<Person>;
+        peopleList[0].hello()
+        console.log(peopleList)
+        // var result = [];
+        // peopleList.forEach((item) => {
+        //   result.push(item)
+        // })
+        // return result
+
+        // var result = peopleList.map((item) => {
+        //   return item as Person
+        // })
+
+        return forkJoin(
+          peopleList.map((person: Person) => {
+            return this.getPersonPlanet(person.homeworld).pipe(
+              map((res) => {
+                person.planet = res;
+                return person as Person;
+              })
+            );
+          })
+        );
       })
     );
-
   }
 
 
+
+
+
   getPlanets(): Observable<any>{
-    const url = `${this.baseUrl}/planets`;
+    const url = `${this.baseUrl}planets`;
 
     return this.httpClient.get(url).pipe(
       map((data: any) => {
@@ -44,7 +85,7 @@ export class NavigationService {
   }
 
   getPlanetDetail(planetId:string): Observable<any>{
-    const url = `${this.baseUrl}/planets/`;
+    const url = `${this.baseUrl}planets/`;
 
     return this.httpClient.get(url+planetId).pipe(
       map((data: any) => {
@@ -54,7 +95,7 @@ export class NavigationService {
   }
 
   getPersonDetail(planetId:string): Observable<any>{
-    const url = `${this.baseUrl}/people/`;
+    const url = `${this.baseUrl}people/`;
 
     return this.httpClient.get(url+planetId).pipe(
       map((data: any) => {
